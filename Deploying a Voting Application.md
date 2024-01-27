@@ -69,13 +69,15 @@
 
 ## **kubectl get pod -n vote -o wide**
 
-![Screenshot 2024-01-27 071315](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/6679f7a7-68ac-45b4-b211-4d2147c03366)
+![Screenshot 2024-01-27 130719](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/54dd78f7-8e3f-4174-9085-f7de4350f2ae)
+
 
 ## 3.2	Verify the Deployment.
 
 ## **kubectl get deployment -n vote**
 
-![Screenshot 2024-01-27 071926](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/c6949c2c-c178-4f38-9a64-d85fbcb83aa7)
+![Screenshot 2024-01-27 130936](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/01ee8ffa-e793-448f-b2a0-182c18094dca)
+
 
 ## The following Commands gives the detailed Information of the pods with the namespace role:
 ## **kubectl get pod --namespace vote -o wide**
@@ -85,13 +87,17 @@
 ## Verify on which node the pod is running.
 ## **kubectl get nodes -o wide**
 
-![Screenshot 2024-01-27 082804](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/8bf14847-56ff-490e-b65d-9c8aa3dcbc32)
+![Screenshot 2024-01-27 131327](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/dda75b2c-d7e7-4ce1-afd5-08cc04a9ba93)
 
-The pod result is running on worker node 2
 
-## 3.4	Copy the worker-node-2 Internal-IP and Service NodePort of the result Pod.
-## paste the worker-node-2 Internal-IP and service NodePort of the result pod on a browser. 
-# **172.31.23.252:31002
+The pod result is running on worker node 1
+
+## 3.4	verified the connection to the result app by running the follwing commad:
+## **telnet <internal ip of worker-node-1> result nodePort**
+## **telnet 172.31.27.25 32767**
+
+![Screenshot 2024-01-27 132216](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cf56d1bd-3c30-4063-bcf8-835122b94219)
+
 
 
 
