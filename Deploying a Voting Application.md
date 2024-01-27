@@ -82,14 +82,16 @@
 
 ## **kubectl get svc --namespace vote -o wide**
 
-![Screenshot 2024-01-27 073743](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/b821fc19-4b01-4aa3-9421-1504688ce435)
-
 ## Verify on which node the pod is running.
 ## **kubectl get nodes -o wide**
 
-![Screenshot 2024-01-27 074343](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/162e09a6-e48f-4f8e-860f-c1a24f60b23d)
+![Screenshot 2024-01-27 082804](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/8bf14847-56ff-490e-b65d-9c8aa3dcbc32)
 
+The pod result is running on worker node 2
 
+## 3.4	Copy the worker-node-2 Internal-IP and Service NodePort of the result Pod.
+## paste the worker-node-2 Internal-IP and service NodePort of the result pod on a browser. 
+# **172.31.23.252:31002
 
 
 
