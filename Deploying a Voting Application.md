@@ -98,6 +98,8 @@ The pod result is running on worker node 1
 
 ![Screenshot 2024-01-27 132216](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cf56d1bd-3c30-4063-bcf8-835122b94219)
 
+# **Successfully Established a connection with the ip of the worker-node-1 and the result nodePort where the the app is running**
+
 
 
 
