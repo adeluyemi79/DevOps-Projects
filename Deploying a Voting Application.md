@@ -71,4 +71,27 @@
 
 ![Screenshot 2024-01-27 071315](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/6679f7a7-68ac-45b4-b211-4d2147c03366)
 
+## 3.2	Verify the Deployment.
+
+## **kubectl get deployment -n vote**
+
+![Screenshot 2024-01-27 071926](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/c6949c2c-c178-4f38-9a64-d85fbcb83aa7)
+
+## The following Commands gives the detailed Information of the pods with the namespace role:
+## **kubectl get pod --namespace vote -o wide**
+
+## **kubectl get svc --namespace vote -o wide**
+
+![Screenshot 2024-01-27 073743](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/b821fc19-4b01-4aa3-9421-1504688ce435)
+
+## Verify on which node the pod is running.
+## **kubectl get nodes -o wide**
+
+![Screenshot 2024-01-27 074343](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/162e09a6-e48f-4f8e-860f-c1a24f60b23d)
+
+
+
+
+
+
 
