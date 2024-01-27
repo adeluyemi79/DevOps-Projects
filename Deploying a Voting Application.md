@@ -18,3 +18,9 @@
 ![Screenshot 2024-01-27 044911](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/62af93de-1273-494a-8e17-084aaa14946c)
 
 
+## **Step 2: Created the application**
+## 2.1	Cloned the following repository for a voting app.
+## **git clone https://github.com/dockersamples/example-voting-app.git**
+
+![Screenshot 2024-01-27 051721](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/da22dfd5-9016-48ce-a9ec-dca7878235cf)
+
