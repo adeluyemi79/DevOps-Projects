@@ -18,6 +18,26 @@
 ## Monitoring and Visualization: Set up Prometheus and Grafana for real-time monitoring and visualization of both hardware and application metrics.
 ## Email Notifications: Configured Jenkins for email alerts based on pipeline results.
 
+## OWASP Dependency-Check(**Open Web Application Security Project Dependency-Check**) is an open-source tool that scans project dependencies to identify known, publicly disclosed, and critical vulnerabilities. It helps developers and security professionals identify and mitigate security issues in third-party libraries and components used in a software project.
+
+## **Key features of OWASP Dependency-Check include:**
+
+## Dependency Analysis: The tool analyzes project dependencies, including libraries and components, to identify potential security vulnerabilities.
+
+## Vulnerability Detection: It checks dependencies against a comprehensive database of known vulnerabilities, including the National Vulnerability Database (NVD) and various other sources.
+
+## Integration with Build Tools: Dependency-Check integrates with popular build tools such as Apache Maven, Gradle, and Jenkins, making it easy to incorporate into the development and build process.
+
+## Multiple Language Support: It supports various programming languages, making it versatile for projects developed in different technologies.
+
+## Automation: Dependency-Check can be automated within the build process to provide continuous monitoring of dependencies for security issues.
+
+## Customizable Reporting: The tool generates reports highlighting identified vulnerabilities, severity levels, and other relevant information. Reports can be customized based on project requirements.
+
+## Integration with Security Scanners: It can be used in conjunction with other security tools and scanners to provide a more comprehensive security analysis.
+
+## Command Line and GUI: Dependency-Check can be used through the command line for automation or through a graphical user interface (GUI) for manual analysis.
+
 # **Launched for servers for this Project**
 
 ## Jenkins Server- On this Server, Jenkins will be installed with some other tools such as sonarqube(docker container), trivy, and kubectl.
