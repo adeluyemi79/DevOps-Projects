@@ -259,6 +259,97 @@ WantedBy=multi-user.target
 
 ![Screenshot 2024-02-01 161456](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cdc34902-8530-4968-9449-affafea514f7)
 
+## created a systemd unit file so that node_exporter can be started at boot. 
+## sudo vi /etc/systemd/system/node_exporter.service
+## pasted the following in the text editor and saved it
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+
+## Since  a new unit file have been created, the systemd daemonw was reloaded, and the service set to always run at boot and start it :
+
+## sudo systemctl daemon-reload
+## sudo systemctl enable node_exporter
+## sudo systemctl start node_exporter
+## sudo systemctl status node_exporter
+
+![Screenshot 2024-02-01 162626](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/0395b9b5-8311-4ecb-bbba-14fe82c8e2b3)
+
+## added a node exporter to the Prometheus target section. So, we will be able to monitor our server.
+
+## edit the file
+
+## sudo vim /etc/prometheus/prometheus.yml
+## Copy the content in the file
+
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
+
+# my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
+
+        ##After saving the file, validated the changes that was made using promtool.
+
+## promtool check config /etc/prometheus/prometheus.yml
+## Restart the Prometheus server with this command
+
+## sudo systemctl restart prometheus.service
+![Screenshot 2024-02-01 165450](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/b36886f7-7680-48fc-8740-a7bc65df74d8)
+
+# Checked node target on Prom GUI at http://44.201.178.192:9090/targets
+
+![Screenshot 2024-02-01 165754](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/1eacb01c-cba2-4d09-8c15-76392a14d840)
+
+## installed the Grafana tool to visualize all the data that is coming with the help of Prometheus.
+
+
+
+
+        
+
+
+
 
 
 
