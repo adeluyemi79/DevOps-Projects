@@ -193,6 +193,79 @@
 
 ## The prometheus.yml file is the main Prometheus configuration file. It includes settings for targets to be monitored, data scraping frequency, data processing, and storage.
 
+## sudo nano /etc/prometheus/prometheus.yml
+
+## Created Prometheus Systemd Service
+## sudo vi /etc/systemd/system/prometheus.service
+
+## Included these settings to the file, save, and exit:
+
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file /etc/prometheus/prometheus.yml \
+    --storage.tsdb.path /var/lib/prometheus/ \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries
+
+[Install]
+WantedBy=multi-user.target
+
+## Reload Systemd
+## Start Prometheus Service
+## sudo systemctl enable prometheus
+## sudo systemctl start prometheus
+## Check Prometheus Status
+
+![Screenshot 2024-02-01 154509](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e8a5bfda-ab35-4dae-aae7-dc2d282fa543)
+
+## Access Prometheus Web Interface
+## Prometheus runs on port 9090 by default so we need to allow port 9090 on the firewall, Do that using the command:
+## **sudo ufw allow 9090/tcp**
+
+![Screenshot 2024-02-01 154740](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/d6c1c182-bb19-4e3d-82b8-d37f32067ec4)
+
+## With Prometheus running successfully,Copied the ip address of the Monitoring server with port 9090 and pasted it on a browser
+# http://44.201.178.192:9090/
+
+![Screenshot 2024-02-01 155635](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/d54893d9-809e-4f2c-92c8-fcae2b053c71)
+
+## installed a node exporter to visualize the machine or hardware level data such as CPU, RAM, etc on our Grafana dashboard.
+
+## wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
+
+## Extract the downloaded Archive
+
+## tar -xf node_exporter-1.5.0.linux-amd64.tar.gz
+
+## Move the node_exporter binary to /usr/local/bin:
+
+## sudo mv node_exporter-1.5.0.linux-amd64/node_exporter /usr/local/bin
+## Remove the residual files with:
+
+## rm -r node_exporter-1.5.0.linux-amd64*
+
+## created users and service files for node_exporter.
+
+## For security reasons, it is always recommended to run any services/daemons in separate accounts of their own. Thus, a user account was created for the node_exporter. the -r flag is to indicate it is a system account, and set the default shell to /bin/false using -s to prevent logins.
+## **sudo useradd -rs /bin/false node_exporter**
+
+![Screenshot 2024-02-01 161456](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cdc34902-8530-4968-9449-affafea514f7)
+
+
+
+
+
+
+
+
 
 
 
