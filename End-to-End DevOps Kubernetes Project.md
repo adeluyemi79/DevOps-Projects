@@ -27,3 +27,6 @@
 ## Kubernetes Master Server- This Server will be used as the Kubernetes Master Cluster Node which will deploy the applications on worker nodes.
 
 ## Kubernetes Worker Server- This Server will be used as the Kubernetes Worker Node on which the application will be deployed by the master node.
+
+## **Jenkins Server**
+## created an instance(jenkins Server) selecting Ubuntu 22.04 version as the os, t2 Instance Large type as multiple things were Configured on the Jenkins Server and allowing All Inbound and Outbound traffic from anywhere on the Security Group.
