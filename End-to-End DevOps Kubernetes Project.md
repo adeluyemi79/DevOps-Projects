@@ -17,3 +17,13 @@
 ## Security Scanning: Implemented Trivy and OWASP Dependency-Check to scan for vulnerabilities in code and Docker images.
 ## Monitoring and Visualization: Set up Prometheus and Grafana for real-time monitoring and visualization of both hardware and application metrics.
 ## Email Notifications: Configured Jenkins for email alerts based on pipeline results.
+
+# **Launched for servers for this Project**
+
+## Jenkins Server- On this Server, Jenkins will be installed with some other tools such as sonarqube(docker container), trivy, and kubectl.
+
+## Monitoring Server- This Server will be used for Monitoring where we will use Prometheus, Node Exporter, and Grafana.
+
+## Kubernetes Master Server- This Server will be used as the Kubernetes Master Cluster Node which will deploy the applications on worker nodes.
+
+## Kubernetes Worker Server- This Server will be used as the Kubernetes Worker Node on which the application will be deployed by the master node.
