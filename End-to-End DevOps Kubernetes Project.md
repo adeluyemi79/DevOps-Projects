@@ -86,7 +86,7 @@
 ## Installed Jenkins
 ## curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
 ##  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-## **echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+## echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
  ## https://pkg.jenkins.io/debian binary/ | sudo tee \
   ## /etc/apt/sources.list.d/jenkins.list > /dev/null
 ## **sudo apt-get update -y**
@@ -111,6 +111,94 @@
 ![Screenshot 2024-02-01 132201](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/112570e3-af54-4eb9-8b9e-8994da9560f2)
 
 ![Screenshot 2024-02-01 132359](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e51d9ef7-7405-44ad-b4e0-f1d95c616c9d)
+
+## Installed Docker on the Jenkins-Server
+## sudo apt update
+## sudo apt install docker.io -y
+## sudo usermod -aG docker jenkins
+## sudo usermod -aG docker ubuntu
+## sudo systemctl restart docker
+## sudo chmod 777 /var/run/docker.sock
+
+![Screenshot 2024-02-01 133509](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/a42f62d6-d778-409a-ab32-e594ac6fa390)
+
+## Installed Sonarqube on your Jenkins Server
+
+## docker container used for Sonarqube
+
+## **docker run -d --name sonar -p 9000:9000 sonarqube:lts-community**
+
+![Screenshot 2024-02-01 133829](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/f098c0dc-d7e4-4c78-9bdc-d3c552b6fd08)
+
+## copied the Public IP of Jenkins Server and add 9000 Port on a browser.
+
+## The username and password is admin
+
+![Screenshot 2024-02-01 134112](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/45f09bfd-aad2-4844-b12c-168baf6cc742)
+
+![Screenshot 2024-02-01 134347](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/8ff17897-152e-489b-a347-4bd844e59161)
+
+## Installed the Trivy tool on the Jenkins Server
+## sudo apt-get install wget apt-transport-https gnupg lsb-release
+## wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+## echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+## sudo apt-get update
+## sudo apt-get install trivy
+
+![Screenshot 2024-02-01 134817](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/487d4839-e4e8-4143-aed0-f83dbe88a971)
+
+## Installed and Configure the Prometheus, Node Exporter, and Grafana on the Monitoring Server
+## Logged on to the Monitoring Server Via SSH
+## Create Prometheus user
+
+## **sudo groupadd --system prometheus**
+## **sudo useradd -s /sbin/nologin --system -g prometheus prometheus**
+## Create Directories for Prometheus
+## sudo mkdir /etc/prometheus
+## sudo mkdir /var/lib/prometheus
+
+![Screenshot 2024-02-01 150918](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/f97dc8ad-749e-4c83-a4fd-8ea28d74a5d7)
+
+
+## Downloaded prometheus and extract files
+
+## wget https://github.com/prometheus/prometheus/releases/download/v2.43.0/prometheus-2.43.0.linux-amd64.tar.gz
+## tar vxf prometheus*.tar.gz
+
+![Screenshot 2024-02-01 151804](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/4c1a2c6b-a0a4-4ede-b2de-7645d8465afd)
+
+## Navigated to the Prometheus Directory
+## cd prometheus*/
+
+## Moved the Binary Files & Set Owner
+
+## sudo mv prometheus /usr/local/bin
+## sudo mv promtool /usr/local/bin
+## sudo chown prometheus:prometheus /usr/local/bin/prometheus
+## sudo chown prometheus:prometheus /usr/local/bin/promtool
+
+![Screenshot 2024-02-01 152346](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/3df4067c-35c3-4fb5-826c-d10a1969cf95)
+
+
+## Moved the Configuration Files & Set Owner
+## sudo mv consoles /etc/prometheus
+## sudo mv console_libraries /etc/prometheus
+## sudo mv prometheus.yml /etc/prometheus
+## sudo chown prometheus:prometheus /etc/prometheus
+## sudo chown -R prometheus:prometheus /etc/prometheus/consoles
+## sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
+## sudo chown -R prometheus:prometheus /var/lib/prometheus
+
+![Screenshot 2024-02-01 152829](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/17e4c09c-fd35-44e1-b4aa-31dde77b775b)
+
+## The prometheus.yml file is the main Prometheus configuration file. It includes settings for targets to be monitored, data scraping frequency, data processing, and storage.
+
+
+
+
+
+
+
 
 
 
