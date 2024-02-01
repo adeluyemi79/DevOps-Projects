@@ -84,11 +84,11 @@
 ![Screenshot 2024-02-01 125933](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/c3875f6b-3c56-48a3-936c-53a84fa9e4ad)
 
 ## Installed Jenkins
-## **curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \**
-##  **/usr/share/keyrings/jenkins-keyring.asc > /dev/null**
-## **echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \**
- ## **https://pkg.jenkins.io/debian binary/ | sudo tee \**
-  ## **/etc/apt/sources.list.d/jenkins.list > /dev/null**
+## curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+##  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+## **echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+ ## https://pkg.jenkins.io/debian binary/ | sudo tee \
+  ## /etc/apt/sources.list.d/jenkins.list > /dev/null
 ## **sudo apt-get update -y**
 ## **sudo apt-get install jenkins -y**
 
