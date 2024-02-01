@@ -49,8 +49,74 @@
 ## Kubernetes Worker Server- This Server will be used as the Kubernetes Worker Node on which the application will be deployed by the master node.
 
 ## **Jenkins Server**
-## created an instance(jenkins Server) selecting Ubuntu 22.04 version as the os, t2 Instance Large type as multiple things were Configured on the Jenkins Server and allowing All Inbound and Outbound traffic from anywhere on the Security Group.
+## created an instance(jenkins Server) selecting Ubuntu 22.04 version as the os, t2 Instance Medium type as multiple things were Configured on the Jenkins Server and allowing All Inbound and Outbound traffic from anywhere on the Security Group. storage volume of 35GB
 
 ![Screenshot 2024-02-01 121110](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/26c7b130-58ab-4275-adcd-2733d361a579)
 
 ## **Monitoring Server**
+## Provisioned an instance(monitoring Server) selecting Ubuntu 22.04 version as the os, t2 Medium Instance type and allowing all inbound and outbound traffic from anywhere on the security Group.
+
+## **Kubernetes Master & Worker Node**
+
+## Provisioned two Instances,one for the Master and the other for the worker Node.
+## Selected The Ubuntu 22.04 version as os and a t2 medium Instance type.
+
+## Connected to the Jenkins-Server Via SSH
+
+![Screenshot 2024-02-01 123932](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/1669fc01-9adc-412f-97d3-32ef57502198)
+## set Hostname for the Jenkins-Server
+## **sudo hostnamectl st-hostname Jenkins 
+## /bin/bash
+
+![Screenshot 2024-02-01 124903](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/bc98ae03-6ea3-4bd3-b0b4-4336f91cad6c)
+
+## Download Open JDK and Jenkins
+## Installed Java
+
+## **sudo apt update -y**
+## **sudo apt install openjdk-11-jre -y**
+## **java --version**
+
+![Screenshot 2024-02-01 125657](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/157e5b51-a581-48ac-9351-93f3784a6369)
+
+![Screenshot 2024-02-01 125901](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/4bc8fa58-53f2-4309-b084-921b63ae4237)
+
+![Screenshot 2024-02-01 125933](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/c3875f6b-3c56-48a3-936c-53a84fa9e4ad)
+
+## Installed Jenkins
+## **curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \**
+##  **/usr/share/keyrings/jenkins-keyring.asc > /dev/null**
+## **echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \**
+ ## **https://pkg.jenkins.io/debian binary/ | sudo tee \**
+  ## **/etc/apt/sources.list.d/jenkins.list > /dev/null**
+## **sudo apt-get update -y**
+## **sudo apt-get install jenkins -y**
+
+![Screenshot 2024-02-01 130510](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e023bbb4-4192-421e-a63a-603516b3ebb3)
+
+![Screenshot 2024-02-01 130958](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cf13945b-fddf-4e6b-b217-21c83e2c43cb)
+## **service Jenkins status**
+
+![Screenshot 2024-02-01 131255](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/34efbb65-8d63-4273-b4f6-41242e21fda5)
+
+## Copied the Jenkins Server Public IP and pasted it on a browser with port number 8080.
+
+![Screenshot 2024-02-01 131618](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/b968f990-7583-4627-8320-d664f872286d)
+
+## Ran this command on Jenkins server
+
+## **sudo cat /var/lib/jenkins/secrets/initialAdminPassword**
+## Copied the output and pasted it into the above snippet text field and click on Continue.
+
+![Screenshot 2024-02-01 132201](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/112570e3-af54-4eb9-8b9e-8994da9560f2)
+
+![Screenshot 2024-02-01 132359](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e51d9ef7-7405-44ad-b4e0-f1d95c616c9d)
+
+
+
+
+
+
+
+
+
