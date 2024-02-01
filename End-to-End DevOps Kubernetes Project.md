@@ -50,3 +50,7 @@
 
 ## **Jenkins Server**
 ## created an instance(jenkins Server) selecting Ubuntu 22.04 version as the os, t2 Instance Large type as multiple things were Configured on the Jenkins Server and allowing All Inbound and Outbound traffic from anywhere on the Security Group.
+
+![Screenshot 2024-02-01 121110](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/26c7b130-58ab-4275-adcd-2733d361a579)
+
+## **Monitoring Server**
