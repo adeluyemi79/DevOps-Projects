@@ -200,29 +200,33 @@
 
 ## Included these settings to the file, save, and exit:
 
-[Unit]
-Description=Prometheus
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-User=prometheus
-Group=prometheus
-Type=simple
-ExecStart=/usr/local/bin/prometheus \
-    --config.file /etc/prometheus/prometheus.yml \
-    --storage.tsdb.path /var/lib/prometheus/ \
-    --web.console.templates=/etc/prometheus/consoles \
-    --web.console.libraries=/etc/prometheus/console_libraries
-
-[Install]
-WantedBy=multi-user.target
+## [Unit]
+## Description=Prometheus
+## Wants=network-online.target
+## After=network-online.target
+## StartLimitIntervalSec=500
+## StartLimitBurst=5
+## [Service]
+## User=prometheus
+## Group=prometheus
+## Type=simple
+## Restart=on-failure
+## RestartSec=5s
+## ExecStart=/usr/local/bin/prometheus \
+ ## - config.file=/etc/prometheus/prometheus.yml \
+ ## - storage.tsdb.path=/data \
+ ## - web.console.templates=/etc/prometheus/consoles \
+ ## - web.console.libraries=/etc/prometheus/console_libraries \
+ ## - web.listen-address=0.0.0.0:9090 \
+ ## - web.enable-lifecycle
+## [Install]
+## WantedBy=multi-user.target
 
 ## Reload Systemd
 ## Start Prometheus Service
 ## sudo systemctl enable prometheus
 ## sudo systemctl start prometheus
-## Check Prometheus Status
+## systemctl status prometheus.service
 
 ![Screenshot 2024-02-01 154509](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e8a5bfda-ab35-4dae-aae7-dc2d282fa543)
 
