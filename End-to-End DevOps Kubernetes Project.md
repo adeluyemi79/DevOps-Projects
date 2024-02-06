@@ -264,18 +264,18 @@
 ## created a systemd unit file so that node_exporter can be started at boot. 
 ## sudo vi /etc/systemd/system/node_exporter.service
 ## pasted the following in the text editor and saved it
-[Unit]
-Description=Node Exporter
-After=network.target
+## [Unit]
+## Description=Node Exporter
+## After=network.target
 
-[Service]
-User=node_exporter
-Group=node_exporter
-Type=simple
-ExecStart=/usr/local/bin/node_exporter
+## [Service]
+## User=node_exporter
+## Group=node_exporter
+## Type=simple
+## ExecStart=/usr/local/bin/node_exporter
 
-[Install]
-WantedBy=multi-user.target
+## [Install]
+## WantedBy=multi-user.target
 
 ## Since  a new unit file have been created, the systemd daemonw was reloaded, and the service set to always run at boot and start it :
 
@@ -293,45 +293,43 @@ WantedBy=multi-user.target
 ## sudo vim /etc/prometheus/prometheus.yml
 ## Copy the content in the file
 
-  - job_name: "node_exporter"
-    static_configs:
-      - targets: ["localhost:9100"]
+## # my global config
+## global:
+##  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+##  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+##  # scrape_timeout is set to the global default (10s).
 
-# my global config
-global:
-  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-  # scrape_timeout is set to the global default (10s).
+## # Alertmanager configuration
+## alerting:
+##  alertmanagers:
+##    - static_configs:
+##        - targets:
+##          # - alertmanager:9093
 
-# Alertmanager configuration
-alerting:
-  alertmanagers:
-    - static_configs:
-        - targets:
-          # - alertmanager:9093
+## # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+## rule_files:
+##  # - "first_rules.yml"
+##  # - "second_rules.yml"
 
-# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-rule_files:
-  # - "first_rules.yml"
-  # - "second_rules.yml"
+## # A scrape configuration containing exactly one endpoint to scrape:
+## # Here it's Prometheus itself.
+## scrape_configs:
+##  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+##  - job_name: "prometheus"
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
-scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: "prometheus"
+##    # metrics_path defaults to '/metrics'
+##    # scheme defaults to 'http'.
 
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
+##    static_configs:
+##      - targets: ["localhost:9090"]
 
-    static_configs:
-      - targets: ["localhost:9090"]
+##  - job_name: "node_exporter"
+##    static_configs:
+##      - targets: ["localhost:9100"]
 
-  - job_name: "node_exporter"
-    static_configs:
-      - targets: ["localhost:9100"]
 
-        ##After saving the file, validated the changes that was made using promtool.
+
+## After saving the file, validated the changes that was made using promtool.
 
 ## promtool check config /etc/prometheus/prometheus.yml
 ## Restart the Prometheus server with this command
