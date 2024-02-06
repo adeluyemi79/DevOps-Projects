@@ -391,11 +391,102 @@
 ## Set up Grafana
 ## Access the Grafana web UI by visiting http://localhost:3000 in the web browser using the Ip of the Monitoring server
 
+## http://3.83.224.209:3000/
+
 ![Screenshot 2024-02-06 152545](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/85e2f608-a4e6-4506-bcf2-dbd9eb9ddf24)
 
 ## Logged in to Grafana with the default credentials (username: admin, password: admin)
 
 ![Screenshot 2024-02-06 152828](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/d7b82062-83a7-4d76-a674-62b90d8c8f22)
+
+## Click on Data sources and selected the prometheus
+## The Public IP of the Monitoring Server with port 9090 was provided to monitor the Monitoring Server.
+## Save and test
+
+![Screenshot 2024-02-06 153938](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/283bea96-d646-4c83-8b0c-e7b447d36761)
+
+![Screenshot 2024-02-06 154052](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/ca259db7-1ff9-4e78-8f30-cb77d4ad78fe)
+
+## selected import Dashboard on the Grafana Dashboard, Added 1860 for the node exported dahboad then load.
+
+![Screenshot 2024-02-06 154627](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/dfa31687-aa8d-4e90-a9b6-ed1751f23cce)
+
+![Screenshot 2024-02-06 154727](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/068eb918-1030-4c26-b859-7c17d353911e)
+
+![Screenshot 2024-02-06 154840](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/4b97b87b-841d-4aab-a44f-1385ee22e153)
+
+## selected prometheus from the drop down menu and import
+
+![Screenshot 2024-02-06 155139](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/496944d8-0c65-4cd5-83d5-d5e6760b7b82)
+
+![Screenshot 2024-02-06 155320](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/59d4e64b-f094-458b-b348-919f9bf95f4d)
+
+## Installed the Prometheus metric plugin on the Jenkins to Monitor the Jenkins Server
+
+## Manage Jenkins -> Plugin search for Prometheus metrics installed it and restart the Jenkins.
+
+![Screenshot 2024-02-06 155748](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cbe53e23-a76f-4a4a-9eb9-fd093eae8140)
+
+![Screenshot 2024-02-06 155929](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/8f1a5ca6-6bc2-40c7-afd3-3ef5ce194ff3)
+
+## Edit the /etc/prometheus/prometheus.yml file
+
+## sudo vim /etc/prometheus/prometheus.yml
+
+## - job_name: "jenkins"
+##    static_configs:
+##      - targets: ["<jenkins-server-public-ip>:8080"]
+
+
+## # my global config
+## global:
+##  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+##  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+##  # scrape_timeout is set to the global default (10s).
+
+## # Alertmanager configuration
+## alerting:
+##  alertmanagers:
+##    - static_configs:
+##        - targets:
+##          # - alertmanager:9093
+
+## # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+## rule_files:
+##  # - "first_rules.yml"
+##  # - "second_rules.yml"
+
+## # A scrape configuration containing exactly one endpoint to scrape:
+## # Here it's Prometheus itself.
+## scrape_configs:
+##  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+##  - job_name: "prometheus"
+
+##    # metrics_path defaults to '/metrics'
+##    # scheme defaults to 'http'.
+
+##    static_configs:
+##      - targets: ["localhost:9090"]
+
+##  - job_name: "node_exporter"
+##    static_configs:
+##      - targets: ["localhost:9100"]
+
+##  - job_name: "jenkins"
+##    static_configs:
+##      - targets: ["<jenkins-server-public-ip>:8080"]
+
+## Validated the prometheus config file
+
+## **promtool check config /etc/prometheus/prometheus.yml**
+
+
+
+
+
+
+
+
 
 
 
