@@ -343,6 +343,71 @@
 
 ## installed the Grafana tool to visualize all the data that is coming with the help of Prometheus.
 
+## sudo apt-get update
+## Add the Grafana repository to your Ubuntu installation:
+
+## **sudo apt-get install -y apt-transport-https**
+## **sudo apt-get install -y software-properties-common wget**
+## **sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key**
+## **echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list**
+
+![Screenshot 2024-02-06 145601](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/ebe79a89-8ce5-48ba-a588-5af1544551bb)
+
+![Screenshot 2024-02-06 150325](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/d7d79d5a-e476-45d7-bdf7-6ca31221ca8e)
+
+## Install Grafana as a service
+## **sudo apt-get Update**
+## **sudo apt-get install grafana**
+
+![Screenshot 2024-02-06 150941](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/003531f5-0920-4fd3-ab3a-d122f2b17294)
+
+![Screenshot 2024-02-06 151055](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/865c7b4f-1ffb-46ea-bd7f-8efd77e7205b)
+
+## **grafana-server -v**
+
+## Start the Grafana service using the following command:
+
+## **sudo systemctl start grafana-server**
+## Enabled the Grafana service to start on boot:
+
+## To start it and make sure that the service is always available every time the machine is restarted, type the command:
+
+## **sudo systemctl enable grafana-server**
+
+## Verified the Grafana installation
+
+## **sudo systemctl status grafana-server**
+
+![Screenshot 2024-02-06 151833](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/04fa44a3-0bd5-412b-a57d-817c16f62229)
+
+## Allowed Grafana TCP port 3000 in the Firewall
+
+## Grafana's default HTTP port is 3000, allowed access to this port on the firewall.
+
+## **sudo ufw allow 3000/tcp**
+
+## Grafana was successfully Insatlled. Used it to create dashboards and visualize data.
+
+## Set up Grafana
+## Access the Grafana web UI by visiting http://localhost:3000 in the web browser using the Ip of the Monitoring server
+
+![Screenshot 2024-02-06 152545](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/85e2f608-a4e6-4506-bcf2-dbd9eb9ddf24)
+
+## Logged in to Grafana with the default credentials (username: admin, password: admin)
+
+![Screenshot 2024-02-06 152828](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/d7b82062-83a7-4d76-a674-62b90d8c8f22)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
