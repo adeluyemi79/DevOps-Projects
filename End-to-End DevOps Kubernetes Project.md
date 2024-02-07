@@ -366,10 +366,12 @@ sudo systemctl restart prometheus.service
 ![Screenshot 2024-02-01 165754](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/1eacb01c-cba2-4d09-8c15-76392a14d840)
 
 ## installed the Grafana tool to visualize all the data that is coming with the help of Prometheus.
-```
-sudo apt-get update
-Add the Grafana repository to your Ubuntu installation:
 
+## sudo apt-get update
+
+## Add the Grafana repository to your Ubuntu installation:
+
+```
 sudo apt-get install -y apt-transport-https
 sudo apt-get install -y software-properties-common wget
 sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
