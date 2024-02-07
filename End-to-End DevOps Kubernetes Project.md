@@ -504,6 +504,8 @@
 
 ## To do that, installed the Jenkins Plugin, whose name is Email Extension Template.
 
+## After installing the plugin, an apps password was generated under security section of my email id through the Manage Account with jenkins as the app name and a password.
+
 ## Manage Jenkins -> Plugins and install the Email Extension Template plugin.
 
 ## configured the mail for the alerts.
@@ -550,6 +552,14 @@
 ![Screenshot 2024-02-06 204146](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/5be7f094-a6e7-4ceb-b95f-d62a61afad95)
 
 ![Screenshot 2024-02-06 204842](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cb650260-95e8-4972-8a09-ed1696e4df2a)
+
+## configured Sonarqube
+
+## To access the sonarqube, copied the Jenkins Server public IP with port number 9000
+
+## Then, click Security and click on Users.
+
+## Clicked on the highlighted blue box on the right to generate the token.
 
 
 
