@@ -65,18 +65,20 @@
 
 ![Screenshot 2024-02-01 123932](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/1669fc01-9adc-412f-97d3-32ef57502198)
 ## set Hostname for the Jenkins-Server
-## **sudo hostnamectl st-hostname Jenkins 
-## /bin/bash
-
+```
+ sudo hostnamectl set-hostname Jenkins 
+ /bin/bash
+```
 ![Screenshot 2024-02-01 124903](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/bc98ae03-6ea3-4bd3-b0b4-4336f91cad6c)
 
 ## Download Open JDK and Jenkins
 ## Installed Java
 
-## **sudo apt update -y**
-## **sudo apt install openjdk-11-jre -y**
-## **java --version**
-
+```
+sudo apt update -y
+sudo apt install openjdk-11-jre -y
+java --version
+```
 ![Screenshot 2024-02-01 125657](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/157e5b51-a581-48ac-9351-93f3784a6369)
 
 ![Screenshot 2024-02-01 125901](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/4bc8fa58-53f2-4309-b084-921b63ae4237)
@@ -84,13 +86,15 @@
 ![Screenshot 2024-02-01 125933](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/c3875f6b-3c56-48a3-936c-53a84fa9e4ad)
 
 ## Installed Jenkins
-## curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
-##  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-## echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
- ## https://pkg.jenkins.io/debian binary/ | sudo tee \
-  ## /etc/apt/sources.list.d/jenkins.list > /dev/null
-## **sudo apt-get update -y**
-## **sudo apt-get install jenkins -y**
+```
+ curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+ /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+ https://pkg.jenkins.io/debian binary/ | sudo tee \
+ /etc/apt/sources.list.d/jenkins.list > /dev/null
+ sudo apt-get update -y
+sudo apt-get install jenkins -y
+```
 
 ![Screenshot 2024-02-01 130510](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e023bbb4-4192-421e-a63a-603516b3ebb3)
 
@@ -112,13 +116,15 @@
 
 ![Screenshot 2024-02-01 132359](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e51d9ef7-7405-44ad-b4e0-f1d95c616c9d)
 
-## Installed Docker on the Jenkins-Server
-## sudo apt update
-## sudo apt install docker.io -y
-## sudo usermod -aG docker jenkins
-## sudo usermod -aG docker ubuntu
-## sudo systemctl restart docker
-## sudo chmod 777 /var/run/docker.sock
+ Installed Docker on the Jenkins-Server
+ ```
+ sudo apt update
+ sudo apt install docker.io -y
+ sudo usermod -aG docker jenkins
+ sudo usermod -aG docker ubuntu
+ sudo systemctl restart docker
+ sudo chmod 777 /var/run/docker.sock
+```
 
 ![Screenshot 2024-02-01 133509](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/a42f62d6-d778-409a-ab32-e594ac6fa390)
 
@@ -139,31 +145,36 @@
 ![Screenshot 2024-02-01 134347](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/8ff17897-152e-489b-a347-4bd844e59161)
 
 ## Installed the Trivy tool on the Jenkins Server
-## sudo apt-get install wget apt-transport-https gnupg lsb-release
-## wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-## echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-## sudo apt-get update
-## sudo apt-get install trivy
+```
+sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+```
 
 ![Screenshot 2024-02-01 134817](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/487d4839-e4e8-4143-aed0-f83dbe88a971)
 
 ## Installed and Configure the Prometheus, Node Exporter, and Grafana on the Monitoring Server
 ## Logged on to the Monitoring Server Via SSH
 ## Create Prometheus user
-
-## **sudo groupadd --system prometheus**
-## **sudo useradd -s /sbin/nologin --system -g prometheus prometheus**
-## Create Directories for Prometheus
-## sudo mkdir /etc/prometheus
-## sudo mkdir /var/lib/prometheus
+```
+sudo groupadd --system prometheus
+sudo useradd -s /sbin/nologin --system -g prometheus prometheus
+Create Directories for Prometheus
+sudo mkdir /etc/prometheus
+sudo mkdir /var/lib/prometheus
+```
 
 ![Screenshot 2024-02-01 150918](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/f97dc8ad-749e-4c83-a4fd-8ea28d74a5d7)
 
 
 ## Downloaded prometheus and extract files
 
-## wget https://github.com/prometheus/prometheus/releases/download/v2.43.0/prometheus-2.43.0.linux-amd64.tar.gz
-## tar vxf prometheus*.tar.gz
+```
+wget https://github.com/prometheus/prometheus/releases/download/v2.43.0/prometheus-2.43.0.linux-amd64.tar.gz
+tar vxf prometheus*.tar.gz
+```
 
 ![Screenshot 2024-02-01 151804](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/4c1a2c6b-a0a4-4ede-b2de-7645d8465afd)
 
@@ -172,22 +183,27 @@
 
 ## Moved the Binary Files & Set Owner
 
-## sudo mv prometheus /usr/local/bin
-## sudo mv promtool /usr/local/bin
-## sudo chown prometheus:prometheus /usr/local/bin/prometheus
-## sudo chown prometheus:prometheus /usr/local/bin/promtool
+```
+sudo mv prometheus /usr/local/bin
+sudo mv promtool /usr/local/bin
+sudo chown prometheus:prometheus /usr/local/bin/prometheus
+sudo chown prometheus:prometheus /usr/local/bin/promtool
+```
 
 ![Screenshot 2024-02-01 152346](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/3df4067c-35c3-4fb5-826c-d10a1969cf95)
 
 
 ## Moved the Configuration Files & Set Owner
-## sudo mv consoles /etc/prometheus
-## sudo mv console_libraries /etc/prometheus
-## sudo mv prometheus.yml /etc/prometheus
-## sudo chown prometheus:prometheus /etc/prometheus
-## sudo chown -R prometheus:prometheus /etc/prometheus/consoles
-## sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
-## sudo chown -R prometheus:prometheus /var/lib/prometheus
+
+```
+sudo mv consoles /etc/prometheus
+sudo mv console_libraries /etc/prometheus
+sudo mv prometheus.yml /etc/prometheus
+sudo chown prometheus:prometheus /etc/prometheus
+sudo chown -R prometheus:prometheus /etc/prometheus/consoles
+sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
+sudo chown -R prometheus:prometheus /var/lib/prometheus
+```
 
 ![Screenshot 2024-02-01 152829](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/17e4c09c-fd35-44e1-b4aa-31dde77b775b)
 
@@ -200,32 +216,35 @@
 
 ## Included these settings to the file, save, and exit:
 
-## [Unit]
-## Description=Prometheus
-## Wants=network-online.target
-## After=network-online.target
+```
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
 
-## [Service]
-## User=prometheus
-## Group=prometheus
-## Type=simple
-## ExecStart=/usr/local/bin/prometheus \
-##     --config.file /etc/prometheus/prometheus.yml \
-##     --storage.tsdb.path /var/lib/prometheus/ \
-##     --web.console.templates=/etc/prometheus/consoles \
-##     --web.console.libraries=/etc/prometheus/console_libraries
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file /etc/prometheus/prometheus.yml \
+    --storage.tsdb.path /var/lib/prometheus/ \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries
 
-## [Install]
-## WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
+```
 
 
 ## Reload Systemd
-## sudo systemctl daemon-reload
-## Start Prometheus Service
-## sudo systemctl enable prometheus
-## sudo systemctl start prometheus
-## systemctl status prometheus.service
-
+```
+sudo systemctl daemon-reload
+Start Prometheus Service
+sudo systemctl enable prometheus
+sudo systemctl start prometheus
+systemctl status prometheus.service
+```
 ![Screenshot 2024-02-01 154509](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e8a5bfda-ab35-4dae-aae7-dc2d282fa543)
 
 ## Access Prometheus Web Interface
@@ -264,25 +283,27 @@
 ## created a systemd unit file so that node_exporter can be started at boot. 
 ## sudo vi /etc/systemd/system/node_exporter.service
 ## pasted the following in the text editor and saved it
-## [Unit]
-## Description=Node Exporter
-## After=network.target
+```
+[Unit]
+Description=Node Exporter
+After=network.target
 
-## [Service]
-## User=node_exporter
-## Group=node_exporter
-## Type=simple
-## ExecStart=/usr/local/bin/node_exporter
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
 
-## [Install]
-## WantedBy=multi-user.target
-
+[Install]
+WantedBy=multi-user.target
+```
 ## Since  a new unit file have been created, the systemd daemonw was reloaded, and the service set to always run at boot and start it :
-
-## sudo systemctl daemon-reload
-## sudo systemctl enable node_exporter
-## sudo systemctl start node_exporter
-## sudo systemctl status node_exporter
+```
+sudo systemctl daemon-reload
+sudo systemctl enable node_exporter
+sudo systemctl start node_exporter
+sudo systemctl status node_exporter
+```
 
 ![Screenshot 2024-02-01 162626](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/0395b9b5-8311-4ecb-bbba-14fe82c8e2b3)
 
@@ -293,48 +314,51 @@
 ## sudo vim /etc/prometheus/prometheus.yml
 ## Copy the content in the file
 
-## # my global config
-## global:
-##  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-##  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-##  # scrape_timeout is set to the global default (10s).
+```
+# my global config
+ global:
+ scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+ evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+ # scrape_timeout is set to the global default (10s).
 
-## # Alertmanager configuration
-## alerting:
-##  alertmanagers:
-##    - static_configs:
-##        - targets:
-##          # - alertmanager:9093
+ # Alertmanager configuration
+ alerting:
+ alertmanagers:
+   - static_configs:
+       - targets:
+         # - alertmanager:9093
 
-## # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-## rule_files:
-##  # - "first_rules.yml"
-##  # - "second_rules.yml"
+ # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+ rule_files:
+ # - "first_rules.yml"
+ # - "second_rules.yml"
 
-## # A scrape configuration containing exactly one endpoint to scrape:
-## # Here it's Prometheus itself.
-## scrape_configs:
-##  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-##  - job_name: "prometheus"
+ # A scrape configuration containing exactly one endpoint to scrape:
+ # Here it's Prometheus itself.
+ scrape_configs:
+ # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
 
-##    # metrics_path defaults to '/metrics'
-##    # scheme defaults to 'http'.
+ # metrics_path defaults to '/metrics'
+ # scheme defaults to 'http'.
 
-##    static_configs:
-##      - targets: ["localhost:9090"]
+static_configs:
+ - targets: ["localhost:9090"]
 
-##  - job_name: "node_exporter"
-##    static_configs:
-##      - targets: ["localhost:9100"]
-
+ - job_name: "node_exporter"
+   static_configs:
+    - targets: ["localhost:9100"]
+```
 
 
 ## After saving the file, validated the changes that was made using promtool.
 
-## promtool check config /etc/prometheus/prometheus.yml
-## Restart the Prometheus server with this command
+```
+promtool check config /etc/prometheus/prometheus.yml
+Restart the Prometheus server with this command
+sudo systemctl restart prometheus.service
+```
 
-## sudo systemctl restart prometheus.service
 ![Screenshot 2024-02-01 165450](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/b36886f7-7680-48fc-8740-a7bc65df74d8)
 
 # Checked node target on Prom GUI at http://44.201.178.192:9090/targets
@@ -342,22 +366,26 @@
 ![Screenshot 2024-02-01 165754](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/1eacb01c-cba2-4d09-8c15-76392a14d840)
 
 ## installed the Grafana tool to visualize all the data that is coming with the help of Prometheus.
+```
+sudo apt-get update
+Add the Grafana repository to your Ubuntu installation:
 
-## sudo apt-get update
-## Add the Grafana repository to your Ubuntu installation:
-
-## **sudo apt-get install -y apt-transport-https**
-## **sudo apt-get install -y software-properties-common wget**
-## **sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key**
-## **echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list**
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y software-properties-common wget
+sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+```
 
 ![Screenshot 2024-02-06 145601](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/ebe79a89-8ce5-48ba-a588-5af1544551bb)
 
 ![Screenshot 2024-02-06 150325](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/d7d79d5a-e476-45d7-bdf7-6ca31221ca8e)
 
+
 ## Install Grafana as a service
-## **sudo apt-get Update**
-## **sudo apt-get install grafana**
+```
+sudo apt-get Update
+sudo apt-get install grafana
+```
 
 ![Screenshot 2024-02-06 150941](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/003531f5-0920-4fd3-ab3a-d122f2b17294)
 
@@ -433,56 +461,60 @@
 
 ## sudo vim /etc/prometheus/prometheus.yml
 
-## - job_name: "jenkins"
-##    static_configs:
-##      - targets: ["<jenkins-server-public-ip>:8080"]
+```
+ - job_name: "jenkins"
+   static_configs:
+     - targets: ["<jenkins-server-public-ip>:8080"]
+```
 
+```
+ # my global config
+ global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
 
-## # my global config
-## global:
-##  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-##  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-##  # scrape_timeout is set to the global default (10s).
+ # Alertmanager configuration
+ alerting:
+ alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
 
-## # Alertmanager configuration
-## alerting:
-##  alertmanagers:
-##    - static_configs:
-##        - targets:
-##          # - alertmanager:9093
+ # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+ rule_files:
+ # - "first_rules.yml"
+ # - "second_rules.yml"
 
-## # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-## rule_files:
-##  # - "first_rules.yml"
-##  # - "second_rules.yml"
+ # A scrape configuration containing exactly one endpoint to scrape:
+ # Here it's Prometheus itself.
+ scrape_configs:
+ # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
 
-## # A scrape configuration containing exactly one endpoint to scrape:
-## # Here it's Prometheus itself.
-## scrape_configs:
-##  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-##  - job_name: "prometheus"
+   # metrics_path defaults to '/metrics'
+   # scheme defaults to 'http'.
 
-##    # metrics_path defaults to '/metrics'
-##    # scheme defaults to 'http'.
+    static_configs:
+     - targets: ["localhost:9090"]
 
-##    static_configs:
-##      - targets: ["localhost:9090"]
+ - job_name: "node_exporter"
+   static_configs:
+     - targets: ["localhost:9100"]
 
-##  - job_name: "node_exporter"
-##    static_configs:
-##      - targets: ["localhost:9100"]
-
-##  - job_name: "jenkins"
-##    static_configs:
-##      - targets: ["3.95.160.167:8080"]
+ - job_name: "jenkins"
+   static_configs:
+     - targets: ["3.95.160.167:8080"]
+```
 
 ## Validated the prometheus config file
 
-## **promtool check config /etc/prometheus/prometheus.yml**
+```
+promtool check config /etc/prometheus/prometheus.yml
 
-## sudo systemctl restart prometheus.service
-## sudo systemctl status prometheus
-
+sudo systemctl restart prometheus.service
+sudo systemctl status prometheus
+```
 
 ![Screenshot 2024-02-06 172522](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/0ec6f851-3664-4f1e-8ca6-509b59c2f05b)
 
