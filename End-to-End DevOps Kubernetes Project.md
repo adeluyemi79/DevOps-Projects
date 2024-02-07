@@ -474,11 +474,89 @@
 
 ##  - job_name: "jenkins"
 ##    static_configs:
-##      - targets: ["<jenkins-server-public-ip>:8080"]
+##      - targets: ["3.95.160.167:8080"]
 
 ## Validated the prometheus config file
 
 ## **promtool check config /etc/prometheus/prometheus.yml**
+
+## sudo systemctl restart prometheus.service
+## sudo systemctl status prometheus
+
+
+![Screenshot 2024-02-06 172522](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/0ec6f851-3664-4f1e-8ca6-509b59c2f05b)
+
+## Copied the public IP of the Monitoring Server and paste on the browser with a 9090 port with /targets.
+## **http://3.83.224.209:9090/targets**
+
+![Screenshot 2024-02-06 172843](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/aa82c30b-5b5b-4d77-8c3a-b2c609ea9ae3)
+
+## Added Jenkins Dashboard on grafana server
+## select New and Import
+## Provide the 9964 to Load the dashboard and Load.
+![image](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/232bff81-e412-4bbd-bc23-ca19df77bc92)
+
+## Selected the default Prometheus from the drop-down menu and click on Import.
+
+![Screenshot 2024-02-06 183841](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/8f5de659-1749-467f-821c-d959953f6185)
+
+## integrated Email Alert. So, if our Jenkins pipeline will succeed or fail we will get a notification alert on our email.
+
+## To do that, installed the Jenkins Plugin, whose name is Email Extension Template.
+
+## Manage Jenkins -> Plugins and install the Email Extension Template plugin.
+
+## configured the mail for the alerts.
+
+## Go to Jenkins -> Manage Jenkins -> System
+
+## Search for Extend E-mail Notification.
+
+## Provided the smtp.gmail.com in the SMTP server and 465 in the SMTP port.
+
+![Screenshot 2024-02-06 194947](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/86e4b51b-b954-4a6d-b933-ff7a65aa992e)
+
+## Then, On the same page Search for Extend E-mail Notification.
+
+## Provided the smtp.gmail.com in the SMTP server and 465 in the SMTP port.
+
+## Selected Use SMTP Authentication and provide the Gmail ID and its password in the Username and password.
+
+## To validate whether Jenkins can send the emails to you or not, check the Test configuration by sending a test e-mail.
+
+![Screenshot 2024-02-06 195923](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/82b600ec-f10b-4a85-ace2-b44462d63a66)
+
+![Screenshot 2024-02-06 201320](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/b04597bc-c8f4-40fb-a90d-0312ee9c6b62)
+
+
+## set up the Jenkins Pipeline. But there are some plugins required to work with them.
+
+## Downloaded the following plugins
+
+## Eclipse Temurin installer
+
+## SonarQube Scanner
+
+## NodeJS
+
+![Screenshot 2024-02-06 202329](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/807359c8-66bd-4a6a-9af8-8df90f275460)
+
+## Configured the plugins
+
+## Go to Manage Jenkins -> Tools
+
+## Click on Add JDK and provide the following things below
+
+![Screenshot 2024-02-06 204146](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/5be7f094-a6e7-4ceb-b95f-d62a61afad95)
+
+![Screenshot 2024-02-06 204842](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cb650260-95e8-4972-8a09-ed1696e4df2a)
+
+
+
+
+
+
+
 
 
 
