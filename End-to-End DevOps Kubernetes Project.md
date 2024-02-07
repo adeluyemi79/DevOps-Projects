@@ -369,7 +369,7 @@ sudo systemctl restart prometheus.service
 
 ## sudo apt-get update
 
-## Add the Grafana repository to your Ubuntu installation:
+## Added the Grafana repository to the Ubuntu installation:
 
 ```
 sudo apt-get install -y apt-transport-https
@@ -383,7 +383,7 @@ echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com st
 ![Screenshot 2024-02-06 150325](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/d7d79d5a-e476-45d7-bdf7-6ca31221ca8e)
 
 
-## Install Grafana as a service
+## Installed Grafana as a service
 ```
 sudo apt-get Update
 sudo apt-get install grafana
