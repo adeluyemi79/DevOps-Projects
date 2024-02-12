@@ -355,7 +355,6 @@ scrape_configs:
 
 ```
 promtool check config /etc/prometheus/prometheus.yml
-Restart the Prometheus server with this command
 sudo systemctl restart prometheus.service
 ```
 
