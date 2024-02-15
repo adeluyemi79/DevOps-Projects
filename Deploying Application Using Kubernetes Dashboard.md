@@ -248,6 +248,187 @@ namespace: kubernetes-dashboard
 
 ![Screenshot 2024-02-15 151104](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/7886e00b-7db2-4305-8913-9d79239a0db1)
 
+## 4.3 Set the permissions
+## To grant permission to access the host server machine, open the exports file in the /etc directory:
+## sudo nano /etc/exports
+## Inside the file, append the following code:
+## /mydbdata 	*(rw,sync,no_root_squash)
+
+![Screenshot 2024-02-15 151852](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/677be625-e5e3-44cd-88c8-0a3033328cf3)
+
+![Screenshot 2024-02-15 152749](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/e23eea19-c35e-4a48-86f8-64458ffdacf8)
+
+## 4.4 export all shared directories defined in the /etc/exports file, use:
+## **sudo exportfs -rv**
+
+## 4.5	Made the folder publicly accessible by changing its owner user and group:
+## sudo chown nobody:nogroup /mydbdata/
+
+## 4.6	Assigned full permissions to ensure everyone can read, write, and execute files in this directory:
+## sudo chmod 777 /mydbdata/
+
+## 4.7	Restarted the NFS kernel server to apply the changes:
+
+## sudo systemctl restart nfs-kernel-server
+
+![Screenshot 2024-02-15 153836](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cf0d35a9-6378-475d-9c2e-2d1fa055b4e4)
+
+## 4.8	Retrieved the internal IP of the node where NFS Server is installed, which will be used to link the PV
+
+## **ip a**
+
+![Screenshot 2024-02-15 154249](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/c9155946-f431-41cb-8e8c-cfa0ef4ba5fb)
+
+
+## The Ip 172.31.27.25 used to associate the PV with the NFS server
+
+## Task 5: Configured the NFS common on client machines
+## This action was performed on each worker node
+
+## Run the following command to install the NFS common package:
+## **sudo apt install nfs-common**
+
+![Screenshot 2024-02-15 155239](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/60553662-89c8-42f3-80a5-5b3f62a14086)
+
+## Refreshed the NFS common service and verify its current status:
+
+## sudo rm /lib/systemd/system/nfs-common.service
+## sudo systemctl daemon-reload
+
+## sudo systemctl restart nfs-common
+## sudo systemctl status nfs-common
+
+![Screenshot 2024-02-15 155804](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/cca1838f-e43e-41ac-82c7-0dc3e4c9617a)
+
+![Screenshot 2024-02-15 160306](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/7a7e553b-2f78-46bc-984a-727f2607fd09)
+
+## Task 6: Created the PersistentVolume
+
+ ## On the master node, drafted the following YAML for the PV and save it as pv.yaml:
+
+## vi pv.yaml
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test
+  labels:
+    app: wordpress
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 172.31.27.25
+    path: "/mydbdata"
+```
+
+## **kubectl apply -f pv.yaml**
+
+## **kubectl get pv**
+
+![Screenshot 2024-02-15 161609](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/96c9599d-6941-45d9-8f3b-1bc2ea3df50e)
+
+## 6.1: Created the PersistentVolumeClaim
+
+## vi pvc.yaml
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mypvc1
+  labels:
+    app: wordpress
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 6Gi
+```
+
+![Screenshot 2024-02-15 162346](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/3efea018-e603-4f08-87bc-9f5bb9f1c387)
+
+## 6.2: Created the deployment for MySQL
+
+## Drafted the following YAML to bind the PVC to the MySQL and save it as mysql.yaml:
+
+## vi mysql.yaml
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-mysql
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+      tier: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password 
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: myvol1 
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: myvol1
+        persistentVolumeClaim:
+          claimName: mypvc1
+```
+
+## **kubectl apply -f mysql.yaml**
+
+## Checked the Status of the Deployment
+
+## kubectl get deploy test-mysql 
+
+## Checked the Status of the pod
+
+## kubectl get pod -l app=wordpress
+
+## 6.6	Verified the Pod is using NFS Volume ‘mypvc1’,
+
+## kubectl describe pod test-mysql-6cd89db584-tt78j
+
+![Screenshot 2024-02-15 163847](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/41baeec2-01da-41c0-9baa-6ce4f5eccf0a)
+
+![Screenshot 2024-02-15 164000](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/3c736b07-6226-4a82-ac7c-ad8b2dd6fa33)
+
+## successfully set up a MySQL pod connected to PersistentVolume (uses NFS) and PersistentVolumeClaim. This ensures that data remains intact even if the pod terminates.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
