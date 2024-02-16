@@ -350,69 +350,186 @@ spec:
 
 ![Screenshot 2024-02-15 162346](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/3efea018-e603-4f08-87bc-9f5bb9f1c387)
 
-## 6.2: Created the deployment for MySQL
 
-## Drafted the following YAML to bind the PVC to the MySQL and save it as mysql.yaml:
 
+## Task 7: Created a secret for MySQL deployments secret data
+
+## Created a YAML manifest file for the secret:
+
+## mysql-secret.yaml:
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+type: Opaque
+data:
+  MYSQL_ROOT_PASSWORD: base64-encoded-password
+```
+## Replaced base64-encoded-password with the Base64 encoded version of the MySQL root password. generated the Base64 encoded value of the password using the following command:
+
+## **echo -n 'your-password' | base64**
+
+## Applied the YAML manifest to create the secret
+
+## kubectl apply -f mysql-secret.yaml
+
+![Screenshot 2024-02-15 170607](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/847ad803-69c0-4514-a133-810b8d1fc154)
+
+
+## Task 8: Created a configmap for WordPress deployment to store non-sensitive information
+
+## Created a YAML Manifest File:
+## Create a YAML file named wordpress-configmap.yaml and add the following content:
+## Generated a password for the wordpress
+
+ ## openssl rand -base64 12
+
+## vi wordpress-configmap.yaml
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wordpress-configmap
+data:
+  WORDPRESS_DB_HOST: mysql-service
+  WORDPRESS_DB_NAME: wordpress-db
+  WORDPRESS_DB_USER: wordpress-user
+  WORDPRESS_DB_PASSWORD: your-password
+```
+
+## Replaced your-password with the Generated Password
+
+## Applied the Yaml Manifest to create the ConfigMap
+## kubectl apply -f wordpress-configmap.yaml
+
+![Screenshot 2024-02-15 172836](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/32b7b3a8-265d-49e4-8d76-d436420ca7e2)
+
+ ## Created Deployment for WordPress
+
+## wordpress.yaml 
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: wordpress
+  name: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - image: wordpress
+        name: wordpress
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: mysql
+        - name: WORDPRESS_DB_PASSWORD
+          value: simplilearn
+        - name: WORDPRESS_DB_USER
+          value: root
+        - name: WORDPRESS_DB_NAME
+          value: database1
+        resources: {}
+status: {}
+```
+## kubectl create -f wordpress.yaml
+
+## Created a Deployment for mysql
 ## vi mysql.yaml
 
 ```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-mysql
+  creationTimestamp: null
   labels:
-    app: wordpress
+    app: mysql
+  name: mysql
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: wordpress
-      tier: mysql
-  strategy:
-    type: Recreate
+      app: mysql
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
-        app: wordpress
-        tier: mysql
+        app: mysql
     spec:
       containers:
       - image: mysql:5.6
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: password 
-        ports:
-        - containerPort: 3306
-          name: mysql
-        volumeMounts:
-        - name: myvol1 
-          mountPath: /var/lib/mysql
-      volumes:
-      - name: myvol1
-        persistentVolumeClaim:
-          claimName: mypvc1
+          value: simplilearn
+        - name: MYSQL_DATABASE
+          value: database1
+        resources: {}
+status: {}
 ```
+## Kubectl get pods
+## kubectl get deployments
 
-## **kubectl apply -f mysql.yaml**
+## Exposed Service for WordPress and MySQL Deployment
+## To expose Service for WordPress and MySQL Deployment, run the following commands:
+## kubectl expose deployment mysql --port=3306
+## kubectl expose deployment wordpress --port=80
 
-## Checked the Status of the Deployment
+![Screenshot 2024-02-15 181150](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/dca2d6c3-87de-4d30-9232-da3ab1da5fec)
 
-## kubectl get deploy test-mysql 
+## Change the Service type for both MySQL and WordPress from ClusterIP to Nodeport.
 
-## Checked the Status of the pod
+## kubectl edit svc mysql
 
-## kubectl get pod -l app=wordpress
+![Screenshot 2024-02-15 181658](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/f4c3ed14-3502-4824-9783-d85eb610d099)
 
-## 6.6	Verified the Pod is using NFS Volume ‘mypvc1’,
+## kubectl edit svc wordpress  
 
-## kubectl describe pod test-mysql-6cd89db584-tt78j
+![Screenshot 2024-02-15 181922](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/4b70a025-dd1a-47a3-9f10-e72bf4cf6aca)
 
-![Screenshot 2024-02-15 163847](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/41baeec2-01da-41c0-9baa-6ce4f5eccf0a)
+![Screenshot 2024-02-15 182055](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/53ccd6bb-8ef8-4138-ae57-976c700bcc09)
 
-![Screenshot 2024-02-15 164000](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/3c736b07-6226-4a82-ac7c-ad8b2dd6fa33)
+## kubectl get svc
+## kubectl get pods -o wide
+## kubectl get nodes -o wide
 
-## successfully set up a MySQL pod connected to PersistentVolume (uses NFS) and PersistentVolumeClaim. This ensures that data remains intact even if the pod terminates.
+![Screenshot 2024-02-15 183200](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/1c49ec57-e4d6-4191-a1a7-a34b004db39c)
+
+## Verified the Deployment of application
+## Pasted worker-node-1 ip and the Nodeportof the wordpress: 172.31.27.25:30678 onto a browser using the kubernetes desktop mode
+
+## Installed my Mysql-server
+## sudo apt-get install mysql-server
+## Start my mysl-server
+## sudo systemctl start mysql
+
+![Screenshot 2024-02-15 185942](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/4d5a19c1-0f97-4ec6-9404-5b5f6e60f008)
+
+![Screenshot 2024-02-15 191002](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/39af5d06-253d-4bf9-b7f6-34e35f1c7781)
+
+![Screenshot 2024-02-15 195027](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/93b731d4-c853-451b-a813-7373e232b8fe)
+
+
+![image](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/f4f2cd06-751e-4199-b974-5d7c2ee2e4f9)
+
+
+
+
 
 
 
