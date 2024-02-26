@@ -59,7 +59,7 @@ sudo apt install awscli
 
 ## aws --version
 
-## 1.1  created a user called Test-user On the AWS Console and gave an administrator access permission. TAccess keys and secret access keys were then generated
+## 1.1  created a user called Test-user On the AWS Console and gave an administrator access permission. Access keys and secret access keys were then generated
 ## 1.2  From the terraform documentation, established the below code to launch an Ec2 Instance-Jenkins server
 ```
 resource "aws_instance" "web" {
