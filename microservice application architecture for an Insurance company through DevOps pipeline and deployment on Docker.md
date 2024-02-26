@@ -102,6 +102,94 @@ resource "aws_instance" "web" {
 ![Screenshot 2024-02-26 001009](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/85fdead7-e28e-4fd5-a883-6f3a7de63b93)
 
 ![Screenshot 2024-02-26 001157](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/3bfa4a41-545a-46ed-8501-483c1aa3e487)
+## connected to the Jenkins Server
+## 1.6 Installed python3
+## **sudo apt install python3 -y**
+
+![Screenshot 2024-02-26 010844](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/9a14071d-d238-4f54-bd9a-45f4cc438941)
+
+
+## next, installed java
+## **sudo apt-get install default-jdk -y**
+
+![Screenshot 2024-02-26 011115](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/2114d781-e500-4a1a-8ba7-7637372f7530)
+
+![Screenshot 2024-02-26 011158](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/a411965f-1c8b-4b17-812f-ddea4b5b4f4b)
+
+![Screenshot 2024-02-26 011300](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/60b05559-1847-46ff-aee9-77b18d2f970d)
+
+
+## 1.7 Installed Jenkins
+```
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+/usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+  echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update -y
+
+sudo apt-get install jenkins -y
+
+service jenkins start
+
+jenkins –version
+
+```
+
+![Screenshot 2024-02-26 011740](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/1f2d8a09-2fe7-4057-a547-a70b04b94634)
+
+![Screenshot 2024-02-26 011920](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/7a8c8948-b150-450b-bcaf-ffe3294d3c1c)
+
+## Step 2: Access Jenkins application
+## 2.1	Open new browser and access Jenkins application deployed on a cloud instance with credentials as below:
+## **34.204.69.175:8080**
+
+![Screenshot 2024-02-26 012703](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/83e7cfce-6052-4de8-934b-2c079dda9539)
+
+![Screenshot 2024-02-26 012824](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/eff6fe7c-e0bf-4031-97ac-a623af7f02d9)
+
+## 2.2 Install Docker on the Jenkins server
+## apt update && apt install docker.io
+
+![Screenshot 2024-02-26 013231](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/64d8d958-16d2-40d4-8b8e-793964304bce)
+
+## Step 3: Created Jenkins pipeline to perform CI CD for a Docker container
+## 3.1 Access Jenkins application and click on New Item to create a new Jenkins job: 
+## 3.2 Selected desired Jenkins pipeline job type and fill in job name as per project requirement: 
+
+![Screenshot 2024-02-26 013903](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/618abb6d-72e6-420c-8d1a-2f1edd5334d8)
+
+## 3.3 Fork the GitHub Repository to configure Jenkins pipeline location.
+
+## https://github.com/adeluyemi79/InsuranceManagement
+
+## 3.4 navigated to Manage Jenkins  Manage Credentials and then select global domain. 
+
+![Screenshot 2024-02-26 020351](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/b424942b-1b81-4c3d-a504-aa447248d5fd)
+
+## 3.4 Clicked on new Credential by clicking on Add Credentials to create a new Docker hub credentials as per below details: 
+
+![Screenshot 2024-02-26 021313](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/3e3d41c8-8fad-461b-8f28-ef1975f476d0)
+
+## 3.5 Next provided full access to Docker Sock file using below command:
+## chmod 777 /var/run/docker.sock
+
+## Step 4: Execute Jenkins Build
+ 
+## 4.1 Navigated to Jenkins job created and click on Build now to start running build for Jenkins job created.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
