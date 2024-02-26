@@ -59,9 +59,6 @@ sudo apt install awscli
 
 ## aws --version
 
-
-
-
 ## 1.1  created a user called Test-user On the AWS Console and gave an administrator access permission. TAccess keys and secret access keys were then generated
 ## 1.2  From the terraform documentation, established the below code to launch an Ec2 Instance-Jenkins server
 ```
@@ -151,7 +148,38 @@ jenkins –version
 ![Screenshot 2024-02-26 012824](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/eff6fe7c-e0bf-4031-97ac-a623af7f02d9)
 
 ## 2.2 Install Docker on the Jenkins server
-## apt update && apt install docker.io
+
+```
+sudo apt update
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+
+apt-cache policy docker-ce
+
+sudo apt install docker-ce
+
+sudo usermod -aG docker jenkins
+
+sudo systemctl start docker
+
+systemctl status docker
+```
+
+## 2.3 Installed trivy for Image scanning
+
+```
+sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+```
 
 ![Screenshot 2024-02-26 013231](https://github.com/adeluyemi79/DevOps-Projects/assets/144259400/64d8d958-16d2-40d4-8b8e-793964304bce)
 
